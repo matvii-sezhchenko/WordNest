@@ -1,0 +1,17 @@
+{
+    "manifest_version": 3,
+    "name": "Select word",
+    "version": "1.0.0",
+    "description": "Chrome extension to select a word and remember it with translation",
+    "permissions": [
+        "storage",
+        "contextMenus",
+        "activeTab",
+        "scripting",
+        "clipboardWrite"
+    ],
+
+    "background": {
+        "service_worker": "background.js"
+    }
+}
