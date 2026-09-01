@@ -16,6 +16,13 @@
         "type": "module"
     },
 
+    "content_scripts": [
+        {
+            "matches": ["<all_urls>"],
+            "js": ["content.js"]
+        }
+    ],
+
     "icons": {
         "128": "img/128.png"
     },
