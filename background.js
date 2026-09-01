@@ -8,11 +8,14 @@ chrome.runtime.onInstalled.addListener(function() {
     });
 });
 
-chrome.contextMenus.onClicked.addListener(function(info, tab) {
+chrome.contextMenus.onClicked.addListener(async function(info, tab) {
     if (info.menuItemId === "translate-and-save") {
-        translateText(info.selectionText).then(translatedText => {
+        try {
+            const translatedText = await translateText(info.selectionText);
             console.log("Selected text: " + info.selectionText);
             console.log("Translated text: " + translatedText);
-        });
+        } catch (error) {
+            console.error("Translation failed:", error);
+        }
     }
 });
