@@ -3,7 +3,7 @@ function removeButton() {
     if (existingBtn) existingBtn.remove();
 }
 
-function createButton(rect) {
+function createButton(rect, selectionText) {
     removeButton();
 
     const btn = document.createElement('button');
@@ -14,6 +14,17 @@ function createButton(rect) {
     btn.style.zIndex = '10000';
     btn.style.left = `${rect.left + window.scrollX}px`;
     btn.style.top = `${rect.bottom + window.scrollY + 5}px`;
+
+    btn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+s
+        const response = await chrome.runtime.sendMessage({
+            action: 'translate',
+            text: selectionText
+        });
+
+        showTooltip(rect, response.translation);
+    });
 
     document.body.appendChild(btn);
     return btn;
