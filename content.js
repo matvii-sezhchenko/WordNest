@@ -56,8 +56,6 @@ function createButton(rect, selectionText) {
     return btn;
 }
 
-
-
 document.addEventListener('mouseup', (event) =>{
     const selectedText = window.getSelection().toString().trim();
 
