@@ -57,6 +57,11 @@ function createButton(rect, selectionText) {
 }
 
 document.addEventListener('mouseup', (event) =>{
+
+    if (event.target.closest('#translate-btn')) {
+        return;
+    }
+
     const selectedText = window.getSelection().toString().trim();
 
     if (selectedText.length > 0) {
