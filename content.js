@@ -1,3 +1,25 @@
+function removeButton() {
+    const existingBtn = document.getElementById('translate-btn');
+    if (existingBtn) existingBtn.remove();
+}
+
+function createButton(rect) {
+    removeButton();
+
+    const btn = document.createElement('button');
+    btn.id = 'translate-btn';
+    btn.innerText = '🌐';
+
+    btn.style.position = 'absolute';
+    btn.style.zIndex = '10000';
+    btn.style.left = `${rect.left + window.scrollX}px`;
+    btn.style.top = `${rect.bottom + window.scrollY + 5}px`;
+
+    document.body.appendChild(btn);
+    return btn;
+}
+
+
 document.addEventListener('mouseup', (event) =>{
     const selectedText = window.getSelection().toString().trim();
 
@@ -6,19 +28,7 @@ document.addEventListener('mouseup', (event) =>{
         const range = selection.getRangeAt(0);
         const rect = range.getBoundingClientRect();
 
-        const existingBtn = document.getElementById('translate-btn');
-        if (existingBtn) existingBtn.remove();
-
-        const btn = document.createElement('button');
-        btn.id = 'translate-btn';
-        btn.innerText = '🌐';
-
-        btn.style.position = 'absolute';
-        btn.style.zIndex = '10000';
-        btn.style.left = `${rect.left + window.scrollX}px`;
-        btn.style.top = `${rect.bottom + window.scrollY + 5}px`;
-
-        document.body.appendChild(btn);
+        createButton(rect);
     }else{
         return 0;
     }
