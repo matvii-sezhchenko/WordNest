@@ -17,11 +17,11 @@ function showTooltip(rect, translationText) {
 
   tooltip.style.position = 'absolute';
   tooltip.style.zIndex = '10000';
-  tooltip.style.padding = '4px 8px';
+  tooltip.style.padding = '6px 12px';
   tooltip.style.background = '#333';
   tooltip.style.color = '#fff';
   tooltip.style.borderRadius = '4px';
-  tooltip.style.fontSize = '14px';
+  tooltip.style.fontSize = '16px';
   tooltip.style.left = `${rect.left + window.scrollX}px`;
   tooltip.style.top = `${rect.top + window.scrollY - 30}px`;
 
