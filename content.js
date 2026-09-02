@@ -15,15 +15,16 @@ function showTooltip(rect, translationText) {
   tooltip.id = 'translate-tooltip';
   tooltip.innerText = translationText;
 
-  tooltip.style.position = 'absolute';
+  tooltip.style.position = 'fixed';
   tooltip.style.zIndex = '10000';
   tooltip.style.padding = '6px 12px';
-  tooltip.style.background = '#333';
-  tooltip.style.color = '#fff';
+  tooltip.style.background = '#ffffff';
+  tooltip.style.color = '#393939';
+  tooltip.style.border = '1px solid #2a648a';
   tooltip.style.borderRadius = '4px';
   tooltip.style.fontSize = '16px';
-  tooltip.style.left = `${rect.left + window.scrollX}px`;
-  tooltip.style.top = `${rect.top + window.scrollY - 30}px`;
+  tooltip.style.left = `${rect.left}px`;
+  tooltip.style.top = `${rect.top - 30}px`;
 
   document.body.appendChild(tooltip);
 }
@@ -36,10 +37,14 @@ function createButton(rect, selectionText) {
     btn.id = 'translate-btn';
     btn.innerText = '🌐';
 
-    btn.style.position = 'absolute';
+    btn.style.position = 'fixed';
     btn.style.zIndex = '10000';
-    btn.style.left = `${rect.left + window.scrollX}px`;
-    btn.style.top = `${rect.bottom + window.scrollY + 5}px`;
+    btn.style.background = '#ffffff';
+    btn.style.padding = '4px 8px';
+    btn.style.border = '1px solid #2a648a';
+    btn.style.borderRadius = '4px';
+    btn.style.left = `${rect.left}px`;
+    btn.style.top = `${rect.bottom + 5}px`;
 
     btn.addEventListener('click', async (e) => {
         e.stopPropagation();
