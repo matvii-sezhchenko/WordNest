@@ -3,7 +3,33 @@ function removeButton() {
     if (existingBtn) existingBtn.remove();
 }
 
+function removeTooltip() {
+    const existingTooltip = document.getElementById('translate-tooltip');
+    if (existingTooltip) existingTooltip.remove();
+}  
+
+function showTooltip(rect, translationText) {
+  removeButton();
+
+  const tooltip = document.createElement('div');
+  tooltip.id = 'translate-tooltip';
+  tooltip.innerText = translationText;
+
+  tooltip.style.position = 'absolute';
+  tooltip.style.zIndex = '10000';
+  tooltip.style.padding = '4px 8px';
+  tooltip.style.background = '#333';
+  tooltip.style.color = '#fff';
+  tooltip.style.borderRadius = '4px';
+  tooltip.style.fontSize = '14px';
+  tooltip.style.left = `${rect.left + window.scrollX}px`;
+  tooltip.style.top = `${rect.top + window.scrollY - 30}px`;
+
+  document.body.appendChild(tooltip);
+}
+
 function createButton(rect, selectionText) {
+    removeTooltip();
     removeButton();
 
     const btn = document.createElement('button');
@@ -30,25 +56,7 @@ function createButton(rect, selectionText) {
     return btn;
 }
 
-function showTooltip(rect, translationText) {
-  removeButton();
 
-  const tooltip = document.createElement('div');
-  tooltip.id = 'translate-tooltip';
-  tooltip.innerText = translationText;
-
-  tooltip.style.position = 'absolute';
-  tooltip.style.zIndex = '10000';
-  tooltip.style.padding = '4px 8px';
-  tooltip.style.background = '#333';
-  tooltip.style.color = '#fff';
-  tooltip.style.borderRadius = '4px';
-  tooltip.style.fontSize = '14px';
-  tooltip.style.left = `${rect.left + window.scrollX}px`;
-  tooltip.style.top = `${rect.top + window.scrollY - 30}px`;
-
-  document.body.appendChild(tooltip);
-}
 
 document.addEventListener('mouseup', (event) =>{
     const selectedText = window.getSelection().toString().trim();
@@ -60,6 +68,7 @@ document.addEventListener('mouseup', (event) =>{
 
         createButton(rect, selectedText);
     }else{
-        return 0;
+        removeTooltip();
+        removeButton();
     }
 })
