@@ -19,3 +19,12 @@ chrome.contextMenus.onClicked.addListener(async function(info, tab) {
         }
     }
 });
+
+chrome.runtime.addListener((request, sender, sendResponse) => {
+    if (request.action === 'translate') {
+        translateText(request.text).then((translation) => {
+            sendResponse({ translation });
+        });
+        return true;
+    }
+});
